@@ -1,0 +1,276 @@
+Script started on 2025-02-02 04:32:28+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="128" LINES="23"]
+[0;32m@chrispbacon1970 [0mâžœ [1;34m/workspaces/csci-330-homeworks-chrispbacon1970 [0;36m([1;31mmain[0;36m) [0m$ sl[Kbcl
+This is SBCL 1.4.3, an implementation of ANSI Common Lisp.
+More information about SBCL is available at <http://www.sbcl.org/>.
+
+SBCL is free software, provided as is, with absolutely no warranty.
+It is mostly in the public domain; some portions are provided under
+BSD-style licenses.  See the CREDITS and COPYING files in the
+distribution for more information.
+* (NOT (EQUAL 3 (ABS -3))) ; NIL
+
+NIL
+* (/ (+ 8 12) 2) ; 10
+
+10
+* (+ (* 3 3) (* 4 4)) ; 25
+
+25
+* (defun MILES-PER-GALLON (INITIAL-ODOMETER-READING FINAL-ODOMETER-READING GALLONS-CONSUMED) (/ (- FINAL-ODOMETER-READING INITIAL-ODOMETER-READING) GALLONS-CONSUMED))
+
+MILES-PER-GALLON
+* (third (the quick brown fox)) ; Has a compile-time error caused by a missing quote.
+; in: THIRD (THE QUICK BROWN FOX)
+;     (THE QUICK BROWN FOX)
+; 
+; caught ERROR:
+;   error while parsing arguments to special operator THE:
+;     too many elements in
+;       (QUICK BROWN FOX)
+;     to satisfy lambda list
+;       (SB-C::VALUE-TYPE SB-KERNEL:FORM):
+;     exactly 2 expected, but got 3
+; 
+; compilation unit finished
+;   caught 1 ERROR condition
+
+debugger invoked on a SB-INT:COMPILED-PROGRAM-ERROR in thread
+#<THREAD "main thread" RUNNING {9461061}>:
+  Execution of a form compiled with errors.
+Form:
+  (THE QUICK BROWN FOX)
+Compile-time error:
+  error while parsing arguments to special operator THE:
+  too many elements in
+    (QUICK BROWN FOX)
+  to satisfy lambda list
+    (SB-C::VALUE-TYPE SB-KERNEL:FORM):
+  exactly 2 expected, but got 3
+
+Type HELP for debugger help, or (SB-EXT:EXIT) to exit from SBCL.
+
+restarts (invokable by number or by possibly-abbreviated name):
+  0: [ABORT] Exit debugger, returning to top level.
+
+((LAMBDA ()))
+   source: (THE QUICK BROWN FOX)
+0] 0
+
+* (third '(the quick brown fox)) ; Fixed by adding a quote.
+
+BROWN
+* (list 2 and 2 is 4) ; Has an unbound-variable error caused by missing quotes.
+
+debugger invoked on a UNBOUND-VARIABLE in thread
+#<THREAD "main thread" RUNNING {9461061}>:
+  The variable AND is unbound.
+
+Type HELP for debugger help, or (SB-EXT:EXIT) to exit from SBCL.
+
+restarts (invokable by number or by possibly-abbreviated name):
+  0: [ABORT] Exit debugger, returning to top level.
+
+(SB-INT:SIMPLE-EVAL-IN-LEXENV AND #<NULL-LEXENV>)
+0] 0
+
+* (list 2 'and 2 'is 4) ; Fixed by adding the missing quotes.
+
+(2 AND 2 IS 4)
+* (+ 1 '(length (list t t t t))) ; Has a TYPE-ERROR error caused by missing quotes and a quote in the wrong place.
+
+debugger invoked on a TYPE-ERROR in thread
+#<THREAD "main thread" RUNNING {9461061}>:
+  The value
+    (LENGTH (LIST T T T T))
+  is not of type
+    NUMBER
+  when binding SB-KERNEL::Y
+
+Type HELP for debugger help, or (SB-EXT:EXIT) to exit from SBCL.
+
+restarts (invokable by number or by possibly-abbreviated name):
+  0: [ABORT] Exit debugger, returning to top level.
+
+(SB-KERNEL:TWO-ARG-+ 1 (LENGTH (LIST T T T T))) [external]
+0] 0
+
+* (+ 1 (length (list 't 't 't 't))) ; Fixed by adjusting the quotes.
+
+5
+* (cons 'patrick (seymour marvin)) ; Has an unbound-variable error caused by a missing quote.
+; in: CONS 'PATRICK
+;     (SEYMOUR MARVIN)
+; 
+; caught WARNING:
+;   undefined variable: MARVIN
+; 
+; caught STYLE-WARNING:
+;   undefined function: SEYMOUR
+; 
+; compilation unit finished
+;   Undefined function:
+;     SEYMOUR
+;   Undefined variable:
+;     MARVIN
+;   caught 1 WARNING condition
+;   caught 1 STYLE-WARNING condition
+
+debugger invoked on a UNBOUND-VARIABLE in thread
+#<THREAD "main thread" RUNNING {9461061}>:
+  The variable MARVIN is unbound.
+
+Type HELP for debugger help, or (SB-EXT:EXIT) to exit from SBCL.
+
+restarts (invokable by number or by possibly-abbreviated name):
+  0: [ABORT] Exit debugger, returning to top level.
+
+((LAMBDA ()))
+   source: (SEYMOUR MARVIN)
+0] 0
+
+* (cons 'patrick '(seymour marvin)) ; Fixed by adding the missing quote.
+
+(PATRICK SEYMOUR MARVIN)
+* (cons 'patrick (list seymour marvin)) ; Has an unbound-variable caused by missing quotes.
+
+debugger invoked on a UNBOUND-VARIABLE in thread
+#<THREAD "main thread" RUNNING {9461061}>:
+  The variable SEYMOUR is unbound.
+
+Type HELP for debugger help, or (SB-EXT:EXIT) to exit from SBCL.
+
+restarts (invokable by number or by possibly-abbreviated name):
+  0: [ABORT] Exit debugger, returning to top level.
+
+(SB-INT:SIMPLE-EVAL-IN-LEXENV SEYMOUR #<NULL-LEXENV>)
+0] 0
+
+* (cons 'patrick (list 'seymour 'marvin)) ; Fixed by adding the missing quotes.
+
+(PATRICK SEYMOUR MARVIN)
+* (defun mystery (x) (list (second x) (first x)))
+
+MYSTERY
+* (mystery '(dancing bear)) ; (BEAR DANCING)
+
+(BEAR DANCING)
+* (mystery 'dancing 'bear) ; Invalid number of arguments
+
+debugger invoked on a SB-INT:SIMPLE-PROGRAM-ERROR in thread
+#<THREAD "main thread" RUNNING {9461061}>:
+  invalid number of arguments: 2
+
+Type HELP for debugger help, or (SB-EXT:EXIT) to exit from SBCL.
+
+restarts (invokable by number or by possibly-abbreviated name):
+  0: [ABORT] Exit debugger, returning to top level.
+
+(MYSTERY DANCING BEAR) [external]
+   source: (SB-INT:NAMED-LAMBDA MYSTERY
+               (X)
+             (BLOCK MYSTERY (LIST (SECOND X) (FIRST X))))
+0] 0
+
+* (mystery '(zowie)) ; (NIL ZOWIE)
+
+(NIL ZOWIE)
+* (mystery (list 'first 'second)) ; (SECOND FIRST)
+
+(SECOND FIRST)
+* (defun speak (x y) (list 'all 'x 'is 'y)) ; The quotes should be for 'all and 'is only.
+; in: DEFUN SPEAK
+;     (SB-INT:NAMED-LAMBDA SPEAK
+;         (X Y)
+;       (BLOCK SPEAK (LIST 'ALL 'X 'IS 'Y)))
+; 
+; caught STYLE-WARNING:
+;   The variable X is defined but never used.
+; 
+; caught STYLE-WARNING:
+;   The variable Y is defined but never used.
+; 
+; compilation unit finished
+;   caught 2 STYLE-WARNING conditions
+
+SPEAK
+* (defun speak (x y) (list 'all x 'is y)) ; Fixed by adjusting the quotes.
+WARNING: redefining COMMON-LISP-USER::SPEAK in DEFUN
+
+SPEAK
+* (defun speak (x) (y) (list 'all x 'is y)) ; The arguments should be contained within the same single parentheses.
+; in: DEFUN SPEAK
+;     (LIST 'ALL X 'IS Y)
+; 
+; caught WARNING:
+;   undefined variable: Y
+
+;     (Y)
+; 
+; caught STYLE-WARNING:
+;   undefined function: Y
+; 
+; compilation unit finished
+;   Undefined function:
+;     Y
+;   Undefined variable:
+;     Y
+;   caught 1 WARNING condition
+;   caught 1 STYLE-WARNING condition
+WARNING: redefining COMMON-LISP-USER::SPEAK in DEFUN
+
+SPEAK
+* (defun speak (x y) (list 'all x 'is y)) ; Fixed by adjusting the parentheses.
+WARNING: redefining COMMON-LISP-USER::SPEAK in DEFUN
+
+SPEAK
+* (defun speak ((x) (y)) (list all 'x is 'y)) ; The arguments should be contained within the single parentheses and the quotes should be for 'all and 'is only.
+; in: DEFUN SPEAK
+;     (SB-INT:NAMED-LAMBDA SPEAK
+;         ((X) (Y))
+;       (BLOCK SPEAK (LIST ALL 'X IS 'Y)))
+; 
+; caught ERROR:
+;   Required argument is not a symbol: (X)
+
+debugger invoked on a SB-INT:SIMPLE-PROGRAM-ERROR in thread
+#<THREAD "main thread" RUNNING {9461061}>:
+  Required argument is not a symbol: (X)
+
+Type HELP for debugger help, or (SB-EXT:EXIT) to exit from SBCL.
+
+restarts (invokable by number or by possibly-abbreviated name):
+  0: [ABORT] Exit debugger, returning to top level.
+
+((LAMBDA NIL :IN SB-C::ACTUALLY-COMPILE))
+0] 0
+; 
+; compilation unit aborted
+;   caught 1 fatal ERROR condition
+;   caught 1 ERROR condition
+
+* (defun speak (x y) (list 'all x 'is y)) ; Fixed by adjusting the parentheses
+WARNING: redefining COMMON-LISP-USER::SPEAK in DEFUN
+
+SPEAK
+* (list 'cons t nil) ; (CONS T NIL)
+
+(CONS T NIL)
+* (eval (list 'cons t nil)) ; (T)
+
+(T)
+* ;(eval (eval (list 'cons t nil))) ; Causes an error because (T) cannot be evaluated.
+(apply #'cons '(t nil)) ; (T)
+
+(T)
+* (eval nil) ; NIL
+
+NIL
+* (list 'eval nil) ; (EVAL NIL)
+
+(EVAL NIL)
+* (eval (list 'eval nil)) ; NIL
+
+NIL
+* ^Z
+[1]+  Stopped                 sbcl
+[0;32m@chrispbacon1970 [1;31mâ
