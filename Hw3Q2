@@ -1,0 +1,9 @@
+Script started on 2025-02-19 06:06:22+00:00 [TERM="xterm-256color" TTY="/dev/pts/9" COLUMNS="311" LINES="10"]
+[0;32m@chrispbacon1970 [0m➜ [1;34m/workspaces/csci-330-homeworks-chrispbacon1970 [0;36m([1;31mmain[0;36m) [0m$ sbcl --noinform --load Homework3Question2.lisp --eval '(progn (write (mergeSort (list 1 2 3 4 5))) (sb-ext:quit))'
+(1 2 3 4 5)[0;32m@chrispbacon1970 [0m➜ [1;34m/workspaces/csci-330-homeworks-chrispbacon1970 [0;36m([1;31mmain[0;36m) [0m$ sbcl --noinform --load Homework3Question2.lisp --eval '(progn (write (mergeSort (list 1 2 3 4 5))) (sb-ext:quit))'[1@1
+(1 2 4 5 13)[0;32m@chrispbacon1970 [0m➜ [1;34m/workspaces/csci-330-homeworks-chrispbacon1970 [0;36m([1;31mmain[0;36m) [0m$ sbcl --noinform --load Homework3Question2.lisp --eval '(progn (write (mergeSort (list 1 2 3 4 5))) (sb-ext:quit))'[C[1P[1P[1P[1@7[1@ [1@6
+(1 2 3 6 7)[0;32m@chrispbacon1970 [0m➜ [1;34m/workspaces/csci-330-homeworks-chrispbacon1970 [0;36m([1;31mmain[0;36m) [0m$ sbcl --noinform --load Homework3Question2.lisp --eval '(progn (write (mergeSort (list 1 2 3 4 5))) (sb-ext:quit))'[C[C[1@5[C[C[C[1@8[C[C[1@ [1P[1@1[1@0[1@0[1@ 
+(1 2 5 53 84 100)[0;32m@chrispbacon1970 [0m➜ [1;34m/workspaces/csci-330-homeworks-chrispbacon1970 [0;36m([1;31mmain[0;36m) [0m$ exit
+exit
+
+Script done on 2025-02-19 06:08:02+00:00 [COMMAND_EXIT_CODE="0"]
